@@ -1,20 +1,21 @@
 {
-    "name": "spier/security",
-    "description": "Provides enhanced security",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "rpurant",
-            "email": "rajpurant19@gmail.com"
-        }
-    ],
-    "autoload": {
-        "classmap": [
-            "src/"
-        ]
-    },
-    "require": {
-        "php": ">=7.4"
+  "name": "spier/security",
+  "description": "Provides enhanced security",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "rpurant",
+      "email": "rajpurant19@gmail.com"
     }
+  ],
+  "autoload": {
+    "classmap": [
+      "src/"
+    ]
+  },
+  "require": {
+    "php": ">=7.4",
+    "ext-json": "*"
+  }
 }

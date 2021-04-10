@@ -1,9 +1,9 @@
 <?php
 
-use Spier\Security\Encrypt;
+use Spier\Security\Session;
+use Spier\Security\Token;
 
 require_once '../../vendor/autoload.php';
 
-$encrypt_key = Encrypt::encode('This is encrypted key');
-echo $encrypt_key . PHP_EOL;
-echo Encrypt::decode($encrypt_key);
+Token::generate();
+echo Token::check(Session::get(Token::TOKEN_NAME));
