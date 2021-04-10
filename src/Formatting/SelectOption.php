@@ -20,7 +20,7 @@
  * Created By: rpurant
  */
 
-namespace BlueBox\Lib;
+namespace Spier\Formatting;
 
 /**
  * Class SelectOption
