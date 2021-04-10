@@ -20,7 +20,7 @@
  * Time: 10:25 PM
  */
 
-namespace BlueBox\Lib;
+namespace Spier\Formatting;
 
 use function in_array;
 
