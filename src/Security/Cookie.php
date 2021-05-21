@@ -21,6 +21,9 @@ namespace Spier\Security;
  */
 class Cookie
 {
+    public const COOKIE_NAME = 'bb_hash';
+    public const COOKIE_EXPIRY = 604800;
+
     /**
      * Description:
      * @param $name

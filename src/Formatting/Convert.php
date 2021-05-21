@@ -22,17 +22,9 @@
 
 namespace Spier\Formatting;
 
+use BlueBox\Lib\Enum\TimeBefore;
 use Exception;
 use function array_key_exists;
-
-define('TIME_BEFORE_NOW', 'just now');
-define('TIME_BEFORE_MINUTE', '{num} minute ago');
-define('TIME_BEFORE_MINUTES', '{num} minutes ago');
-define('TIME_BEFORE_HOUR', '{num} hour ago');
-define('TIME_BEFORE_HOURS', '{num} hours ago');
-define('TIME_BEFORE_YESTERDAY', 'yesterday');
-define('TIME_BEFORE_FORMAT', 'on %e %b');
-define('TIME_BEFORE_FORMAT_YEAR', 'on %e %b, %Y');
 
 /**
  * Class Convert
@@ -149,11 +141,11 @@ class Convert
         $carore = 10 ** 7;
 
         if ($input >= $carore) {
-            $number = self::decimal((float)($input / $carore)) . 'Cr';
+            $number = self::decimal((float)($input / $carore)) . ' Cr';
         } elseif ($input >= $lakh) {
-            $number = self::decimal((float)($input / $lakh)) . 'L';
+            $number = self::decimal((float)($input / $lakh)) . ' Lac';
         } elseif ($input >= $k) {
-            $number = (int)($input / $k) . 'K';
+            $number = (int)($input / $k) . ' K';
         } else {
             $number = (int)$input;
         }
@@ -348,17 +340,17 @@ class Convert
 
         // it happened now
         if ($diff < 60) {
-            $string = TIME_BEFORE_NOW;
+            $string = TimeBefore::TIME_BEFORE_NOW;
         } elseif ($diff < 3600) {
             $string = str_replace('{num}', $out = round($diff / 60),
-                $out === 1 ? TIME_BEFORE_MINUTE : TIME_BEFORE_MINUTES);
+                $out === 1 ? TimeBefore::TIME_BEFORE_MINUTE : TimeBefore::TIME_BEFORE_MINUTES);
         } elseif ($diff < 86400) {
             $string = str_replace('{num}', $out = round($diff / 3600),
-                $out === 1 ? TIME_BEFORE_HOUR : TIME_BEFORE_HOURS);
+                $out === 1 ? TimeBefore::TIME_BEFORE_HOUR : TimeBefore::TIME_BEFORE_HOURS);
         } elseif ($diff < 172800) {
-            $string = TIME_BEFORE_YESTERDAY;
+            $string = TimeBefore::TIME_BEFORE_YESTERDAY;
         } else {
-            $string = strftime(date('Y', $timestamp) === date('Y') ? TIME_BEFORE_FORMAT : TIME_BEFORE_FORMAT_YEAR, $timestamp);
+            $string = strftime(date('Y', $timestamp) === date('Y') ? TimeBefore::TIME_BEFORE_FORMAT : TimeBefore::TIME_BEFORE_FORMAT_YEAR, $timestamp);
         }
         return $string;
     }
